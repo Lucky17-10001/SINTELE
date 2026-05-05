@@ -52,7 +52,7 @@ RNF023-O sistema deve utilizar inteligência artificial para revisar os resumos 
 RNF024-O sistema deve encaminhar resumos com possível conteúdo impróprio para os responsáveis do aplicativo para que sejam averiguados
 RNF025-O sistema deve conter um botão para denunciar possíveis resumos com conteúdo inapropriado que não foram detectados pela I.A.
 
-{RF010-Entrega de atividades
+RF010-Entrega de atividades
 
 RNF026-O sistema deve possibilitar que o professor envie atividades para os alunos com prazo
 RNF027-O sistema deve possibilitar que os alunos enviem as atividades para o professor
