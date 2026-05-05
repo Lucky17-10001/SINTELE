@@ -6,18 +6,15 @@ RNF001-O sistema deve enviar um código de confirmação em até 20 segundos no 
 RNF002-O sistema deve enviar o código de confirmação com prazo e expiração de 5 minutos 
 RNF003-O sistema deve deixar salvo o e-mail informado
 
-
 {RF002-O sistema deve associar o usuário a um aluno existente de uma sala específica
 
 RNF004-O sistema deve reconhecer a sala e separar os estudantes por sala
 RNF005-O sistema deve reconhecer o nome inserido pelo aluno e colocá-lo na sala correta
 
-
 {RF003-O sistema deve realocar o usuário à página inicial logo após o cadastro
 
 RNF006-O sistema deve realocar o usuário em até 5 segundos após o cadastro do e-mail
 RNF007-O sistema deve apresentar os botões de todas as áreas principais contidas no aplicativo(aba de chat, aba de tarefas, aba de atividades, etc.) e o Menu Hamburger (contendo a área de ajuda, feedback, como entrar em contato, etc.)
-
 
 {RF004-O sistema deve fornecer um chat que permita a interação entre usuários
 
