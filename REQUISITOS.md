@@ -55,8 +55,6 @@ RNF025-O sistema deve conter um botão para denunciar possíveis resumos com con
 {RF010-Entrega de atividades
 
 RNF026-O sistema deve possibilitar que o professor envie atividades para os alunos com prazo
-_________________________________
 RNF027-O sistema deve possibilitar que os alunos enviem as atividades para o professor
-# Teste
 
 
