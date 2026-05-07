@@ -33,6 +33,12 @@ SINTELE é um aplicativo/site de ensino desenvolvido por Gabriela, Luana, Liara 
     <img src = "wireframe-tela_inicial.jpg">
 </div>
 
+# 📊 Panilha de gastos estimados
+
+<div>
+	<img src = "excelsintele.png">
+</div>
+
 # 👥 Membros
 Gabriela: https://github.com/GabiLeh
 
