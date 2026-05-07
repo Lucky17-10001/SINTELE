@@ -21,7 +21,9 @@ SINTELE é um aplicativo/site de ensino desenvolvido por Gabriela, Luana, Liara 
 	* Interagir com o professor de química
 	* Criar salas de competição (quem acertar mais questões, finalizar mais jogos e quizzes sobe de posição)
 	* Entrar em contato com o suporte se necessário
-
+# 📄 Exemplo de um requisito funcional e não funcional do SINTELE
+{RF001-O usuário deve cadastrar seu e-mail para fazer login
+* RNF001-O sistema deve enviar um código de confirmação em até 20 segundos no e-mail inserido no cadastro
 # 💻 Wireframes
 <div>
   <img src = "wireframe-login.png">
@@ -30,3 +32,12 @@ SINTELE é um aplicativo/site de ensino desenvolvido por Gabriela, Luana, Liara 
 <div>
     <img src = "wireframe-tela_inicial.jpg">
 </div>
+
+# 👥 Membros
+Gabriela: https://github.com/GabiLeh
+
+Larissa: https://github.com/LarissaGuarizo
+
+Liara: https://github.com/Liaratolloto
+
+Luana: https://github.com/Lucky17-10001
