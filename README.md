@@ -28,5 +28,5 @@ SINTELE é um aplicativo/site de ensino desenvolvido por Gabriela, Luana, Liara 
 </div>
 
 <div>
-    <img src = "wireferame-tela_inicial.jpg">
+    <img src = "wireframe-tela_inicial.jpg">
 </div>
