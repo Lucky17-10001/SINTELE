@@ -1,4 +1,6 @@
 # SINTELE ⚗️
+forms a ser preenchido pelos alunos:
+https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=SxwFsZQ7q0GUQec6cjQv3ba7Bj5jCF1Ds4kv80Lr_3lUOFVIVzRNM1BVTEQ5NzlTOEhOQVRXSkQ0SC4u
 # 🧠 O que é e seu objetivo
 SINTELE é um aplicativo/site de ensino desenvolvido por Gabriela, Luana, Liara e Larissa, com o objetivo de melhorar e otimizar o ensino da química na escola SESI, focando nos alunos do 2º e 3º ano do Ensino Médio. O aplicativo busca oferecer apoio ao professor dessa matéria(atualmente Luciano) por meio de resumos, jogos e quizzes informativos, videoaulas, interação digital com a tabela periódica, sistema de integração de Inteligência Artificial, entre outras formas. Assim, sobra mais tempo para aulas dinâmicas e experimentais, as quais a falta delas é uma das principais queixas dos alunos
 # 🧩 Suas funcionalidades
