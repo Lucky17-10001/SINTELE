@@ -1,5 +1,5 @@
 *{
-    margin: 10px;;
+    margin: 0;
     padding:0;
     box-sizing: border-box;
 }
@@ -7,38 +7,28 @@ body{
     font-family: Arial, sans-serif;
 }
 header{
-    background: rgba(0, 0, 0, 0);
-    color:#000000;
-    padding:16px 0;
+    background: lightgreen;
+    color: black;
     text-align: center;
 }
-section{
-    padding: 32px;
-    margin: 16px;
-    background: #fbf6ee;
-    color: #000000;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+header h1{
+    margin-bottom: 1px;
+    font-size: 100px;
 }
-.cards{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap:16px;
+nav ul{
+    list-style: none;
+        padding: 10px;
 }
-.card{
-    background-color: lightgreen;
-    color: #000000;
-    border-radius:8px;
-    padding:20px;
-    width: 83%;
-    transition: transform 0.3s ease, 
-    box-shadow 0.3s ease;
+nav ul li{
+    display: inline;
+    margin:10px;
 }
-.card:hover{
-    transform: scale(1.05);
-    box-shadow: 0 8px
-    16px rgba(0, 0, 0, 3);
+nav ul li a{
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
-#chat {
-    background-color: grey;
+nav ul li a:hover{
+    color: white;
+    cursor:pointer;
 }
