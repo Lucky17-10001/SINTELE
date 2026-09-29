@@ -1,0 +1,44 @@
+*{
+    margin: 10px;;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, sans-serif;
+}
+header{
+    background: rgba(0, 0, 0, 0);
+    color:#000000;
+    padding:16px 0;
+    text-align: center;
+}
+section{
+    padding: 32px;
+    margin: 16px;
+    background: #fbf6ee;
+    color: #000000;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+.cards{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap:16px;
+}
+.card{
+    background-color: lightgreen;
+    color: #000000;
+    border-radius:8px;
+    padding:20px;
+    width: 83%;
+    transition: transform 0.3s ease, 
+    box-shadow 0.3s ease;
+}
+.card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 8px
+    16px rgba(0, 0, 0, 3);
+}
+#chat {
+    background-color: grey;
+}
