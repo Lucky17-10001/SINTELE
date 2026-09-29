@@ -26,11 +26,11 @@ SINTELE é um aplicativo/site de ensino desenvolvido por Gabriela, Luana, Liara 
 * RNF001-O sistema deve enviar um código de confirmação em até 20 segundos no e-mail inserido no cadastro
 # 💻 Wireframes
 <div>
-  <img src = "wireframe-login.png">
+  <img src = "wireframes/wireframe-login.png">
 </div>
 
 <div>
-    <img src = "wireframe-tela_inicial.jpg">
+    <img src = "wireframes/wireframe-tela_inicial.jpg">
 </div>
 
 # 📊 Panilha de gastos estimados
