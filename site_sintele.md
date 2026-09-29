@@ -1,1 +1,0 @@
-https://liaraguarizo.my.canva.site/sintele
