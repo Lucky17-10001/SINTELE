@@ -3,7 +3,7 @@ const router = express.Router()
 
 const novoUsuario = require('./controllers/usuario')
 const listarUsuarios = require('../dados.json')
-
+const usuarios = require('../dados.json')
 const rotaInicial = (req, res) => {
     res.json("Back-end sintele respondendo")
 }
