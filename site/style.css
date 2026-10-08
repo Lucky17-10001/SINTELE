@@ -16,16 +16,23 @@ header{
 }
 header h1{
     margin-bottom: 1px;
+<<<<<<< HEAD
     font-size: 100px;
     font-family:Georgia, 'Times New Roman', Times, serif;
+=======
+    font-size: 90px;
+>>>>>>> 860b72e885334930e95773db70bfbcfb7b7d2d72
 }
 nav ul{
     list-style: none;
-        padding: 10px;
+    padding: 10px;
+}
+nav ul li{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 nav ul li{
     display: inline;
-    margin:10px;
+    padding: 10px;
 }
 nav ul li a{
     color:rgb(0, 0, 0);
@@ -33,7 +40,7 @@ nav ul li a{
     transition: color 0.3s ease;
 }
 nav ul li a:hover{
-    color: white;
+    color: rgb(18, 140, 2);
     cursor:pointer;
 }
 .cards{
