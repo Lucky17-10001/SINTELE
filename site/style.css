@@ -16,12 +16,9 @@ header{
 }
 header h1{
     margin-bottom: 1px;
-<<<<<<< HEAD
     font-size: 100px;
     font-family:Georgia, 'Times New Roman', Times, serif;
-=======
     font-size: 90px;
->>>>>>> 860b72e885334930e95773db70bfbcfb7b7d2d72
 }
 nav ul{
     list-style: none;
@@ -100,4 +97,6 @@ nav ul li a:hover{
 .botao{
     margin-bottom: -30px;
     margin-right: 150px;
+  
 }
+
