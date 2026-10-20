@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, sans-serif;
+    width: 100vw;
+    height: 100vh;
+}
+h3, h1 {
+    text-align: center;
+}
+input {
+    width: 30%;
+    padding: 6px;
+    font-size: 16px;
+    text-align: center;
+}
+input:focus {
+  border-color: #38FF6D;
+  border-width: 3px;
+  color: #1e1b4b;
+  outline: none;
+}
+button {
+    width: 150px;
+    border-width: 1px;
+    border-radius: 3px;
+    padding: 3px;
+    background-color: rgb(210, 255, 165);
+    transition: all 0.3s ease;
+}
+button:hover {
+    cursor: pointer;
+    background-color: rgb(2, 158, 12);
+}
+.novaMat {
+    width: 100%;
+    height: 20vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+}
