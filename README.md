@@ -59,4 +59,5 @@ Liara   // BACK-END
 Luana   // SITE (index, e começou tabelaperiodica, resumo, atividades, atividades.js), MER DER
 
 --------------- AINDA INCOMPLETO
-materiasprof.html e mateiras.html ainda não estão interligados, chat não funciona, entre outras coisas
+<br>
+materiasprof.html e materias.html ainda não estão interligados, chat não funciona, entre outras coisas
