@@ -4,8 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividades</title>
+    <link rel="stylesheet" href="atividades.css">
 </head>
 <body>
-    <p>atividades aqui ó</p>
+    <section class="container-atividades">
+        <h2 class="titulo-secao">Atividade pendentes</h2>
+        <div class="grid-atividades">
+            <article class="card-atividade urgent" data-id="1">
+                <div class="badge">Hoje</div>
+                <div class="conteudo-card">
+                    <span class="materia">Estequiometria</span>
+                    <h3>Exercícios de Estequiometria</h3>
+                    <p>Fazer o cálculo da síntese da amônia a partir do nitrogênio e do hidrogênio.</p>
+                    <div class="meta-info">
+                        <span>📅 Prazo: 20/10</span>
+                    </div>
+                </div>
+                <a href="#" class="btn-enviar">Enviar Tarefa</a>
+            </article>
+            <article class="card-atividade" data-id="2">
+                <div class="badge pendente">Pendente</div>
+                <div class="conteudo-card">
+                    <span class="materia termoquimica">Termoquímica</span>
+                    <h3>Exercícios de Termoquímica</h3>
+                    <p>Fazer o cálculo usando a Lei de Hess.</p>
+                    <div class="meta-info">
+                        <span>📅 Prazo: 24/10</span>
+                    </div>
+                </div>
+                <a href="#" class="btn-enviar">Enviar Tarefa</a>
+            </article>
+            <article class="card-atividade concluida" data-id="3">
+                <div class="badge sucesso">Concluída</div>
+                <div class="conteudo-card">
+                    <span class="materia solucoes">Soluções</span>
+                    <h3>Conceito de Soluto e Solvente</h3>
+                    <p>Fazer o cálculo e achar o Soluto e o Solvente.</p>
+                    <div class="meta-info">
+                        <span>📅 Entregue</span>
+                    </div>
+                </div>
+                <a href="#" class="btn-enviar disabled">Visualizar Envio</a>
+            </article>
+        </div>
+    </section>
+    <div id="upload-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-title">Enviar Tarefa</h3>
+            <p id="modal-desc"></p>
+            
+            <form id="form-envio">
+                <div class="drop-zone">
+                    <span class="drop-zone-text">Clique aqui para selecionar seu arquivo</span>
+                    <input type="file" id="arquivo-tarefa" required style="display: none;">
+                </div>
+                <div id="file-info" class="hidden">
+                    📄 <span id="file-name"></span>
+                </div>
+                <button type="submit" class="btn-confirmar">Confirmar Envio</button>
+            </form>
+        </div>
+    </div>
+    <script src="atividades.js"></script>
 </body>
 </html>
