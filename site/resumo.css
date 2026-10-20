@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+body {
+    background-color: #f0f4f8;
+    padding: 40px 20px;
+}
+.container-resumos {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.cabecalho-secao {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.titulo-secao {
+    font-size: 28px;
+    color: #1a365d;
+    margin-bottom: 8px;
+}
+.subtitulo {
+    color: #627d98;
+    font-size: 16px;
+}
+.grid-resumos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+.card-resumo {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e4e7eb;
+}
+.card-resumo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(26, 54, 93, 0.1);
+}
+.card-resumo.geral { border-top: 5px solid #00a896; }
+.card-resumo.fisico-quimica { border-top: 5px solid #028090; }
+.card-resumo.organica { border-top: 5px solid #f25c54; }
+.categoria-tag {
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin: 20px 20px 0 20px;
+    border-radius: 6px;
+}
+.geral .categoria-tag { background: #e0f7f4; color: #00a896; }
+.fisico-quimica .categoria-tag { background: #e0f2f1; color: #028090; }
+.organica .categoria-tag { background: #fdeaea; color: #f25c54; }
+.conteudo-resumo {
+    padding: 20px;
+    flex-grow: 1;
+}
+.data-aula {
+    font-size: 13px;
+    color: #829ab1;
+    display: block;
+    margin-bottom: 8px;
+}
+.card-resumo h3 {
+    font-size: 19px;
+    color: #102a43;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+.card-resumo p {
+    font-size: 14px;
+    color: #486581;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+.formulas-destaque {
+    background: #f0f4f8;
+    padding: 10px;
+    border-radius: 8px;
+    border-left: 3px solid #bcccdc;
+    margin-top: 15px;
+}
+.formulas-destaque code {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 13px;
+    color: #334e68;
+}
+.acoes-card {
+    display: flex;
+    border-top: 1px solid #e4e7eb;
+    background: #f8fafc;
+}
+.btn-ler, .btn-download {
+    text-decoration: none;
+    text-align: center;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+.btn-ler {
+    flex: 3;
+    color: #102a43;
+    border-right: 1px solid #e4e7eb;
+}
+.btn-ler:hover {
+    background: #e4e7eb;
+}
+.btn-download {
+    flex: 1;
+    color: #486581;
+}
+.btn-download:hover {
+    background: #e4e7eb;
+    color: #102a43;
+}
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('sintele_logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 400px;
+  opacity: 0.1; 
+  z-index: -1; 
+  pointer-events: none; 
+}

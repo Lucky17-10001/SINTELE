@@ -1,0 +1,192 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, sans-serif;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f4f6f9;
+    padding: 40px;
+}
+.container-atividades {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.titulo-secao {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    border-left: 4px solid #27ae60;
+    padding-left: 10px;
+}
+.grid-atividades {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+.card-atividade {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s ease;
+}
+.card-atividade:hover {
+    transform: translateY(-4px);
+}
+.card-atividade.urgent { border-top: 4px solid #e74c3c; }
+.card-atividade { border-top: 4px solid #f39c12; }
+.card-atividade.concluida { border-top: 4px solid #27ae60; opacity: 0.9; }
+.badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 20px;
+    background: #f39c12;
+    color: white;
+}
+.card-atividade.urgent .badge { background: #e74c3c; }
+.badge.sucesso { background: #27ae60; }
+.conteudo-card .materia {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #e74c3c;
+    display: block;
+    margin-bottom: 8px;
+}
+.conteudo-card .materia.termoquimica { color: #f39c12; }
+.conteudo-card .materia.solucoes { color: #27ae60; }
+.conteudo-card h3 {
+    color: #2c3e50;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.conteudo-card p {
+    color: #7f8c8d;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+.meta-info {
+    font-size: 13px;
+    color: #95a5a6;
+    margin-bottom: 20px;
+}
+.btn-enviar {
+    display: block;
+    text-align: center;
+    background-color: #27ae60;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+.btn-enviar:hover {
+    background-color: #219653;
+}
+.btn-enviar.disabled {
+    background-color: #94a3b8 !important;
+    color: white;
+    cursor: pointer;
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.modal-box {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 450px;
+    max-width: 90%;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: #7f8c8d;
+    cursor: pointer;
+}
+.close-modal:hover {
+    color: #333;
+}
+#modal-title {
+    color: #2c3e50;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+#modal-desc {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+.drop-zone {
+    border: 2px dashed #27ae60;
+    padding: 30px 20px;
+    text-align: center;
+    margin: 20px 0 15px;
+    cursor: pointer;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+.drop-zone:hover {
+    background-color: #f1f5f9;
+}
+.drop-zone-text {
+    color: #27ae60;
+    font-weight: 500;
+    font-size: 14px;
+}
+#file-info {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 6px;
+    color: #065f46;
+    font-size: 14px;
+}
+.btn-confirmar {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.btn-confirmar:hover {
+    background-color: #219653;
+}
+.hidden {
+    display: none !important;
+}
