@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Matérias</title>
+  <link rel="stylesheet" href="materias.css">
+</head>
+<body>
+
+  <h1>Matérias Prof</h1>
+  <div class="novaMat">
+    <h3>Criar Nova Matéria</h3>
+    <input type="text" id="nomeMateria" placeholder="Nome da matéria (ex: Estequeometria)">
+    <button onclick="adicionarMateria()">Criar Aba de Matéria</button>
+  </div>
+
+  <hr>
+  <div id="containerAbas"></div>
+  <hr>
+  <div id="conteudoMateria">
+    <p>Nenhuma matéria selecionada.</p>
+  </div>
+<script src="materias.js"></script>
+</body>
+</html>
