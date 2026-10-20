@@ -48,9 +48,9 @@ Liara: https://github.com/Liaratolloto
 
 Luana: https://github.com/Lucky17-10001
 
-# 1° SPRINT
+# ⌨️ 1° SPRINT
 
-Gabriela // SITE (index, login, loginprof, cadastro, perfilaluno, professor, CSS)
+Gabriela // SITE (index, login, loginprof, cadastro, perfilaluno, professor, CSS, JS)
 
 Larissa // BACK-END E BANCO DE DADOS
 
