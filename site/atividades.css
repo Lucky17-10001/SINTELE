@@ -50,21 +50,17 @@ body{
     text-transform: uppercase;
     padding: 4px 8px;
     border-radius: 20px;
-    background: #f39c12;
+    background: #21a50f;
     color: white;
 }
-.card-atividade.urgent .badge { background: #e74c3c; }
-.badge.sucesso { background: #27ae60; }
 .conteudo-card .materia {
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #e74c3c;
+    color: black;
     display: block;
     margin-bottom: 8px;
 }
-.conteudo-card .materia.termoquimica { color: #f39c12; }
-.conteudo-card .materia.solucoes { color: #27ae60; }
 .conteudo-card h3 {
     color: #2c3e50;
     font-size: 18px;
