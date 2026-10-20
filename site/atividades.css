@@ -41,9 +41,6 @@ body{
 .card-atividade:hover {
     transform: translateY(-4px);
 }
-.card-atividade.urgent { border-top: 4px solid #e74c3c; }
-.card-atividade { border-top: 4px solid #f39c12; }
-.card-atividade.concluida { border-top: 4px solid #27ae60; opacity: 0.9; }
 .badge {
     position: absolute;
     top: 15px;
