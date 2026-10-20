@@ -50,9 +50,11 @@ body{
     text-transform: uppercase;
     padding: 4px 8px;
     border-radius: 20px;
-    background: #21a50f;
+    background: #f39c12;
     color: white;
 }
+.card-atividade.urgent .badge { background: #e74c3c; }
+.badge.sucesso { background: #27ae60; }
 .conteudo-card .materia {
     font-size: 12px;
     font-weight: bold;
