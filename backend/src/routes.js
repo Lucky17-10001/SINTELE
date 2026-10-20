@@ -1,12 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
-const novoUsuario = require('./controllers/usuario')
-const listarUsuarios = require('../dados.json')
-const rotaInicial = (req, res) => {
-    res.json("Back-end sintele respondendo")
-}
-
+const { rotaInicial, novoUsuario, listarUsuarios } = require('./controllers/usuario');
 router.get('/', rotaInicial)
 router.post('/usuario', novoUsuario)
 router.get('/usuarios', listarUsuarios)
