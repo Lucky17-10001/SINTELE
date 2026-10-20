@@ -35,11 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const submission = taskSubmissions[activity.id];
             const currentGrade = teacherGrades[activity.id] || "";
 
-            if (submission) {
-                const fileName = typeof submission === 'object' ? submission.name : submission;
-                const fileUrl = typeof submission === 'object' ? submission.url : "#";
-                const targetAttr = typeof submission === 'object' ? 'target="_blank" download' : '';
-
+            if (submission && typeof submission === 'object' && submission.url) {
                 row.className = "entrega-row entregue";
                 row.innerHTML = `
                     <div class="entrega-header">
@@ -48,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <h3>${activity.title}</h3>
                     
-                    <!-- 🌟 LINK REAL PARA DOWNLOAD DIRETO DO SERVIDOR BACKEND -->
                     <div class="entrega-arquivo">
                         📂 Arquivo do Aluno: 
                         <a href="${submission.url}" target="_blank" rel="noopener noreferrer" style="color: #2563eb; font-weight: bold; text-decoration: underline; margin-left: 5px;">
