@@ -41,9 +41,6 @@ body{
 .card-atividade:hover {
     transform: translateY(-4px);
 }
-.card-atividade.urgent { border-top: 4px solid #e74c3c; }
-.card-atividade { border-top: 4px solid #f39c12; }
-.card-atividade.concluida { border-top: 4px solid #27ae60; opacity: 0.9; }
 .badge {
     position: absolute;
     top: 15px;
@@ -53,21 +50,17 @@ body{
     text-transform: uppercase;
     padding: 4px 8px;
     border-radius: 20px;
-    background: #f39c12;
+    background: #21a50f;
     color: white;
 }
-.card-atividade.urgent .badge { background: #e74c3c; }
-.badge.sucesso { background: #27ae60; }
 .conteudo-card .materia {
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #e74c3c;
+    color: black;
     display: block;
     margin-bottom: 8px;
 }
-.conteudo-card .materia.termoquimica { color: #f39c12; }
-.conteudo-card .materia.solucoes { color: #27ae60; }
 .conteudo-card h3 {
     color: #2c3e50;
     font-size: 18px;
