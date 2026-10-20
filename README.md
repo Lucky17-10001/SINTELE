@@ -50,7 +50,7 @@ Luana: https://github.com/Lucky17-10001
 
 # 1° SPRINT
 
-Gabriela // SITE (index, login, loginprof, cadastro, perfilaluno, professor), ORGANIZAR PASTAS
+Gabriela // SITE (index, login, loginprof, cadastro, perfilaluno, professor, CSS)
 
 Larissa // BACK-END E BANCO DE DADOS
 
