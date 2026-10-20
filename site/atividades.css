@@ -187,3 +187,18 @@ body{
 .hidden {
     display: none !important;
 }
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('sintele_logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 400px;
+  opacity: 0.1; 
+  z-index: -1; 
+  pointer-events: none; 
+}
