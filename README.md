@@ -50,10 +50,13 @@ Luana: https://github.com/Lucky17-10001
 
 # ⌨️ 1° SPRINT
 
-Gabriela   // SITE (index, login, loginprof, cadastro, perfilaluno, professor, materiasprof, CSS, materias.js)
+Gabriela   // SITE (index, login, loginprof, cadastro, perfilaluno, professor, materiasprof, materias, CSS, materias.js)
 
 Larissa   // BACK-END E BANCO DE DADOS
 
 Liara   // BACK-END
 
 Luana   // SITE (index, e começou tabelaperiodica, resumo, atividades, atividades.js), MER DER
+
+--------------- AINDA INCOMPLETO
+materiasprof.html e mateiras.html ainda não estão interligados, chat não funciona, entre outras coisas

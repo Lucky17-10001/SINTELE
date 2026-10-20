@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matérias</title>
+    <link rel="stylesheet" href="atividades.css">
+</head>
+<body>
+    <section class="container-atividades">
+        <h2 class="titulo-secao">Matérias</h2>
+        <div class="grid-atividades">
+            <article class="card-atividade urgent" data-id="1">
+                <div class="conteudo-card">
+                    <span class="materia" style="text-align: center;">Estequiometria</span>
+                    <p style="text-align: center;">O que é?<br>Aula de 09/10 - 16/10</p>
+                </div>
+                <a href="#" class="btn-enviar">Visualizar</a>
+            </article>
+    </section>
+    <div id="upload-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-title">Enviar Tarefa</h3>
+            <p id="modal-desc"></p>
+            
+            <form id="form-envio">
+                <div class="drop-zone">
+                    <span class="drop-zone-text">Clique aqui para selecionar seu arquivo</span>
+                    <input type="file" id="arquivo-tarefa" required style="display: none;">
+                </div>
+                <div id="file-info" class="hidden">
+                    📄 <span id="file-name"></span>
+                </div>
+                <button type="submit" class="btn-confirmar">Confirmar Envio</button>
+            </form>
+        </div>
+    </div>
+    <script src="atividades.js"></script>
+</body>
+</html>
