@@ -47,3 +47,13 @@ Larissa: https://github.com/LarissaGuarizo
 Liara: https://github.com/Liaratolloto
 
 Luana: https://github.com/Lucky17-10001
+
+# 1° SPRINT
+
+Gabriela // SITE (index, login, loginprof, cadastro, perfilaluno, professor), ORGANIZAR PASTAS
+
+Larissa // BACK-END E BANCO DE DADOS
+
+Liara // BACK-END
+
+Luana // SITE (index, e começou tabelaperiodica, materias, resumo, atividades), MER DER
