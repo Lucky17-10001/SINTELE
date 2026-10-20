@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "multer": "^2.4.0",
+    "node": "^26.12.0"
+  },
+  "name": "sintele",
+  "version": "1.0.0",
+  "description": "SINTELE é um aplicativo/site de ensino desenvolvido por Gabriela, Luana, Liara e Larissa, com o objetivo de melhorar e otimizar o ensino da química na escola SESI, focando nos alunos do 2º e 3º ano do Ensino Médio. O aplicativo busca oferecer apoio ao professor dessa matéria(atualmente Luciano) por meio de resumos, jogos e quizzes informativos, videoaulas, interação digital com a tabela periódica, sistema de integração de Inteligência Artificial, entre outras formas. Assim, sobra mais tempo para aulas dinâmicas e experimentais, as quais a falta delas é uma das principais queixas dos alunos\r # 🧩 Suas funcionalidades\r   * 🔐 Sistema de login e cadastro\r   * 📚 Metódos diversos de ensino (jogos educacionais, quizzes, resumos, I.A.)\r   * 📲 Envio de mensagens com respostas da I.A.\r   * 🥇 Sistema de competição com o objetivo de estimular os estudantes\r   * 💬 Chat entre alunos e chat com professor\r   * 📈 Visualizar suas maiores dificuldades\r # 🔄 Fluxo do aplicativo\r 1. Usuário cria cadastro, assim podendo realizar login, posteriormente\r 2. Assim que os dados forem preenchidos, eles ficaram salvos no banco de dados\r 3. O usuário poderá:\r \t* Jogar jogos educativos\r \t* Visualizar e acrescentar resumos\r \t* Visualizar e acrescentar vídeos\r \t* Interagir digitalmente com a tabela periódica\r \t* Interagir com uma I.A. treinada\r \t* Interagir com outros alunos\r \t* Interagir com o professor de química\r \t* Criar salas de competição (quem acertar mais questões, finalizar mais jogos e quizzes sobe de posição)\r \t* Entrar em contato com o suporte se necessário\r # 📄 Exemplo de um requisito funcional e não funcional do SINTELE\r {RF001-O usuário deve cadastrar seu e-mail para fazer login\r * RNF001-O sistema deve enviar um código de confirmação em até 20 segundos no e-mail inserido no cadastro\r # 💻 Wireframes\r <div>\r   <img src = \"wireframes/wireframe-login.png\">\r </div>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lucky17-10001/SINTELE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Lucky17-10001/SINTELE/issues"
+  },
+  "homepage": "https://github.com/Lucky17-10001/SINTELE#readme"
+}

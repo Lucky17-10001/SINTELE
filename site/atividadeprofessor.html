@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades Professor</title>
+    <link rel="stylesheet" href="atividadeprofessor.css">
+</head>
+<body>
+    <header class="header-professor">
+        <h1>Painel de Controle do Professor</h1>
+    </header>
+    <main class="container-professor">
+        <section class="coluna-criar">
+            <div class="card-formulario">
+                <h2>➕ Criar Nova Atividade</h2>
+                <form id="form-criar-atividade">
+                    <div class="campo-grupo">
+                        <label for="nova-materia">Matéria / Disciplina</label>
+                        <select id="nova-materia" required>
+                            <option value="Estequiometria">Estequiometria</option>
+                            <option value="Termoquímica">Termoquímica</option>
+                            <option value="Soluções">Soluções</option>
+                        </select>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="novo-titulo">Título da Atividade</label>
+                        <input type="text" id="novo-titulo" placeholder="Ex: Exercícios Extras de Gases" required>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="nova-descricao">Instruções / Descrição</label>
+                        <textarea id="nova-descricao" rows="4" placeholder="Descreva o que o aluno deve calcular..." required></textarea>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="novo-prazo">Data de Prazo</label>
+                        <input type="text" id="novo-prazo" placeholder="Ex: 30/10" required>
+                    </div>
+                    <button type="submit" class="btn-criar">Publicar Atividade</button>
+                </form>
+            </div>
+        </section>
+        <section class="coluna-monitor">
+            <h2>📋 Entregas dos Alunos</h2>
+            <div id="lista-entregas" class="grid-entregas">
+            </div>
+        </section>
+    </main>
+    <script src="atividadeprofessor.js"></script>
+</body>
+</html>
