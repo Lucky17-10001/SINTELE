@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(routes);
+app.use("/api", routes);
 
 const porta = 3000;
 app.listen(porta, () => {
