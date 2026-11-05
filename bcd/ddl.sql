@@ -11,6 +11,13 @@ CREATE TABLE aluno (
     senha varchar(100) not null
 );
 
+CREATE TABLE professor (
+    id_professor int primary key not null,
+    email varchar(100) not null,
+    nome varchar(100) not null,
+    especialidade varchar(68) not null
+);
+
 CREATE TABLE aulas (
     id_aula int primary key not null,
     titulo varchar(40) not null,
@@ -18,13 +25,6 @@ CREATE TABLE aulas (
     materia varchar(70),
     duracao DATE not null default(CURDATE()),
     id_professor int not null
-);
-
-CREATE TABLE professor (
-    id_professor int primary key not null,
-    email varchar(100) not null,
-    nome varchar(100) not null,
-    especialidade varchar(68) not null
 );
 
 CREATE TABLE atividade (
@@ -52,6 +52,10 @@ CREATE TABLE contato (
     telefone varchar(11) not null
 );
 
-describe aulas;
-describe professor;
 describe aluno;
+describe professor;
+describe aulas;
+describe atividade;
+describe video;
+describe materia;
+describe contato;
