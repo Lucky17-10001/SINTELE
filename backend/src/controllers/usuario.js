@@ -136,9 +136,62 @@ const loginAluno = (req, res) => {
     });
 };
 
+const loginProfessor = (req, res) => {
+    const { email, senha } = req.body;
+
+    if (!email || !senha) {
+        return res.status(400).json({
+            mensagem: "Preencha todos os campos."
+        });
+    }
+
+    const sql = `
+        SELECT id, nome, email, senha, especialidade
+        FROM professor
+        WHERE email = ?
+    `;
+
+    db.query(sql, [email], (erro, resultados) => {
+        if (erro) {
+            console.error("Erro ao consultar professor:", erro);
+
+            return res.status(500).json({
+                mensagem: "Erro ao consultar o BD."
+            });
+        }
+
+        if (resultados.length === 0) {
+            return res.status(401).json({
+                mensagem: "Dados de login incorretos."
+            });
+        }
+
+        const professor = resultados[0];
+
+        const senhaCorreta = verificarSenha(senha, professor.senha);
+
+        if (!senhaCorreta) {
+            return res.status(401).json({
+                mensagem: "Dados de login incorretos."
+            });
+        }
+
+        res.json({
+            mensagem: "Login realizado com sucesso!",
+            professor: {
+                id: professor.id,
+                nome: professor.nome,
+                email: professor.email,
+                especialidade: professor.especialidade
+            }
+        });
+    });
+};
+
 module.exports = {
     rotaInicial,
     novoUsuario,
     listarUsuarios,
-    loginAluno
+    loginAluno,
+    loginProfessor
 };

@@ -5,12 +5,14 @@ const {
     rotaInicial,
     novoUsuario,
     listarUsuarios,
-    loginAluno
+    loginAluno,
+    loginProfessor
 } = require("./controllers/usuario");
 
 router.get("/", rotaInicial);
 router.post("/usuario", novoUsuario);
 router.get("/usuarios", listarUsuarios);
 router.post("/login-aluno", loginAluno);
+router.post("/login-professor", loginProfessor);
 
 module.exports = router;
