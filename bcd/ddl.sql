@@ -42,6 +42,11 @@ CREATE TABLE materia (
     descricao text not null,
     capitulo varchar(30) not null
 )
+CREATE TABLE contato (
+    nome varchar(50) not null,
+    email varchar(30) not null,
+    telefone varchar(11) not null
+)
 
 describe aulas;
 describe professor;
