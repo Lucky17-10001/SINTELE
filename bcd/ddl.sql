@@ -1,14 +1,14 @@
-DROP DATABASE IF EXISTS usuarios;
+DROP DATABASE IF EXISTS sintele;
 
-CREATE DATABASE ;
+CREATE DATABASE sintele;
 
-USE pedidos;
+use sintele;
 
 CREATE TABLE aluno (
     id_aluno int primary key not null auto_increment,
     nome varchar(40) not null,
     email varchar(200) not null,
-    senha varchar(100) not null,
+    senha varchar(100) not null
 );
 
 CREATE TABLE aulas (
@@ -26,11 +26,19 @@ CREATE TABLE professor (
     nome varchar(100) not null,
     especialidade varchar(68) not null
 );
+CREATE TABLE atividade (
+    id_atividade int primary key auto_increment not null,
+    titulo varchar(80) not null,
+    descricao text,
+    data_entrega date not null default(CURDATE())
+);
+CREATE TABLE video (
+    id_video int primary key auto_increment not null,
+    video_url text not null
+)
 
-alter table aluno add constraint eh foreign key (id_aluno) references aluno(id);
-alter table professor add constraint possui foreign key (id_professor) references professores(id);
-
-describe alunos;
 describe aulas;
-describe professores;
+describe professor;
+describe aluno;
+
 show tables;

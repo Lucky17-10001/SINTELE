@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let taskSubmissions = JSON.parse(localStorage.getItem("taskSubmissions")) || {};
+    let taskSubmissions = {};
+    let teacherGrades = {};
+    let customActivities = [];
 
-    const cards = document.querySelectorAll(".card-atividade");
-    
+    const gridAtividades = document.querySelector(".grid-atividades");
     const modal = document.getElementById("upload-modal");
     const modalTitle = document.getElementById("modal-title");
     const modalDesc = document.getElementById("modal-desc");
@@ -30,8 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const taskTitle = card.querySelector("h3").textContent;
 
             if (button.classList.contains("disabled")) {
-                const savedFileName = taskSubmissions[taskId] || "Arquivo enviado anteriormente (padrão do sistema).";
-                alert(`Tarefa já enviada!\nArquivo entregue: ${savedFileName}`);
+                const submission = taskSubmissions[taskId];
+                const savedFileName = (submission && typeof submission === 'object') ? submission.name : "Arquivo enviado anteriormente.";
+                const notaValue = teacherGrades[taskId] ? `\nNota atribuída: ${teacherGrades[taskId]}` : "\nAguardando nota do professor.";
+                alert(`Tarefa já enviada!\nArquivo entregue: ${savedFileName}${notaValue}`);
                 return;
             }
 
@@ -73,14 +76,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function setCardToCompleted(card) {
+        const formData = new FormData();
+        formData.append("arquivo", fileInput.files[0]);
+
+        fetch(`http://localhost:3000/api/upload/${activeTaskId}`, {
+            method: "POST",
+            body: formData
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Falha no upload do arquivo.");
+            return res.json();
+        })
+        .then(data => {
+            alert("Sucesso! Arquivo real salvo na pasta do servidor.");
+            modal.classList.add("hidden");
+            loadDashboardData();
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Erro ao realizar upload do arquivo físico.");
+        });
+    });
+
+    function setCardToCompleted(card, nota) {
         card.className = "card-atividade concluida";
         const badge = card.querySelector(".badge");
         badge.className = "badge sucesso";
         badge.textContent = "Concluída";
+        
         const metaInfo = card.querySelector(".meta-info span");
-        metaInfo.textContent = "📅 Entregue";
+        metaInfo.innerHTML = nota ? `📅 Entregue | ⭐️ <strong>Nota: ${nota}</strong>` : "📅 Entregue";
+        
         const button = card.querySelector(".btn-enviar");
         button.className = "btn-enviar disabled";
         button.textContent = "Visualizar Envio";
     }
+});
+
+    setInterval(loadDashboardData, 3000);
+
+    loadDashboardData();
 });
