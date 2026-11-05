@@ -41,7 +41,7 @@ CREATE TABLE materia (
     titulo varchar(80) not null,
     descricao text not null,
     capitulo varchar(30) not null
-)
+);
 CREATE TABLE contato (
     nome varchar(50) not null,
     email varchar(30) not null,
