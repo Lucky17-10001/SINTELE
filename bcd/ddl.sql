@@ -26,22 +26,32 @@ CREATE TABLE professor (
     nome varchar(100) not null,
     especialidade varchar(68) not null
 );
+
 CREATE TABLE atividade (
     id_atividade int primary key auto_increment not null,
     titulo varchar(80) not null,
-    descricao text,
+    descricao text not null,
     data_entrega date not null default(CURDATE())
 );
+
 CREATE TABLE video (
     id_video int primary key auto_increment not null,
     video_url text not null
-)
+);
+
+CREATE TABLE materia (
+    id_materia int primary key auto_increment not null,
+    titulo varchar(80) not null,
+    descricao text not null,
+    capitulo varchar(30) not null
+);
+
+CREATE TABLE contato (
+    nome varchar(50) not null,
+    email varchar(30) not null,
+    telefone varchar(11) not null
+);
 
 describe aulas;
 describe professor;
-<<<<<<< HEAD
-=======
 describe aluno;
-
->>>>>>> 32bb3eb2d65ceceb774c89f0f92c6db67709d66a
-show tables;
