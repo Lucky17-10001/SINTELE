@@ -6,7 +6,8 @@ CREATE TABLE aluno (
     id_aluno INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(200) NOT NULL UNIQUE,
-    senha VARCHAR(255) NOT NULL
+    senha VARCHAR(255) NOT NULL,
+    sala VARCHAR(30) NOT NULL DEFAULT '2A'
 );
 
 CREATE TABLE professor (
@@ -15,27 +16,6 @@ CREATE TABLE professor (
     nome VARCHAR(100) NOT NULL,
     senha VARCHAR(255) NOT NULL,
     especialidade VARCHAR(68) NOT NULL
-);
-
-CREATE TABLE aulas (
-    id int primary key not null,
-    titulo varchar(40) not null,
-    descricao varchar(100),
-    materia varchar(70),
-    duracao DATE not null default(CURDATE()),
-    id_professor int not null
-);
-
-CREATE TABLE atividade (
-    id int primary key auto_increment not null,
-    titulo varchar(80) not null,
-    descricao text not null,
-    data_entrega date not null default(CURDATE())
-);
-
-CREATE TABLE video (
-    id int primary key auto_increment not null,
-    video_url text not null
 );
 
 CREATE TABLE materia (
@@ -60,8 +40,9 @@ CREATE TABLE atividade (
     id INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(80) NOT NULL,
     descricao TEXT NOT NULL,
-    data_entrega DATE NOT NULL,
-    id_professor INT NOT NULL,
+    data_entrega DATE NOT NULL DEFAULT (CURDATE()),
+    materia VARCHAR(70) NOT NULL DEFAULT 'Estequiometria',
+    id_professor INT NOT NULL DEFAULT 1,
     FOREIGN KEY (id_professor) REFERENCES professor(id)
 );
 
@@ -72,8 +53,9 @@ CREATE TABLE entrega (
     resposta TEXT NOT NULL,
     nota DECIMAL(5,2),
     data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_aluno) REFERENCES aluno(id),
-    FOREIGN KEY (id_atividade) REFERENCES atividade(id)
+    FOREIGN KEY (id_aluno) REFERENCES aluno(id_aluno),
+    FOREIGN KEY (id_atividade) REFERENCES atividade(id),
+    UNIQUE (id_aluno, id_atividade)
 );
 
 CREATE TABLE video (
