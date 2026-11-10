@@ -1,119 +1,160 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let taskSubmissions = {};
-    let teacherGrades = {};
-    let customActivities = [];
-
     const gridAtividades = document.querySelector(".grid-atividades");
     const modal = document.getElementById("upload-modal");
     const modalTitle = document.getElementById("modal-title");
     const modalDesc = document.getElementById("modal-desc");
     const closeModal = document.querySelector(".close-modal");
     const formEnvio = document.getElementById("form-envio");
-    const fileInput = document.getElementById("arquivo-tarefa");
-    const dropZone = document.querySelector(".drop-zone");
-    const fileInfo = document.getElementById("file-info");
-    const fileNameSpan = document.getElementById("file-name");
+    const respostaInput = document.getElementById("resposta-tarefa");
 
-    let activeTaskId = null; 
-    cards.forEach(card => {
-        const taskId = card.getAttribute("data-id");
-        if (taskSubmissions[taskId]) {
-            setCardToCompleted(card);
-        }
+    let activeTaskId = null;
+    let atividades = [];
+
+    function carregarAtividades() {
+        fetch("http://localhost:3000/api/activities")
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error("Erro ao buscar atividades.");
+                }
+
+                return res.json();
+            })
+            .then(data => {
+                atividades = data;
+                renderizarAtividades();
+            })
+            .catch(erro => {
+                console.error("Erro ao carregar atividades:", erro);
+            });
+    }
+
+    function renderizarAtividades() {
+        gridAtividades.innerHTML = "";
+
+        atividades.forEach(atividade => {
+            const card = document.createElement("article");
+            card.className = "card-atividade";
+            card.dataset.id = atividade.id;
+
+            const materia = document.createElement("span");
+            materia.className = "materia";
+            materia.textContent = atividade.materia;
+
+            const titulo = document.createElement("h3");
+            titulo.textContent = atividade.titulo;
+
+            const descricao = document.createElement("p");
+            descricao.textContent = atividade.descricao;
+
+            const badge = document.createElement("div");
+            badge.className = "badge pendente";
+            badge.textContent = "Pendente";
+
+            const conteudo = document.createElement("div");
+            conteudo.className = "conteudo-card";
+
+            const prazo = document.createElement("div");
+            prazo.className = "meta-info";
+
+            const prazoTexto = document.createElement("span");
+            prazoTexto.textContent = `📅 Prazo: ${atividade.data_entrega}`;
+
+            prazo.appendChild(prazoTexto);
+
+            conteudo.append(materia, titulo, descricao, prazo);
+
+            const botao = document.createElement("a");
+            botao.href = "#";
+            botao.className = "btn-enviar";
+            botao.textContent = "Enviar Tarefa";
+
+            card.append(badge, conteudo, botao);
+            gridAtividades.appendChild(card);
+        });
+    }
+
+    gridAtividades.addEventListener("click", evento => {
+        const botao = evento.target.closest(".btn-enviar");
+
+        if (!botao) return;
+
+        evento.preventDefault();
+
+        const card = botao.closest(".card-atividade");
+        activeTaskId = card.dataset.id;
+
+        const atividade = atividades.find(
+            item => String(item.id) === String(activeTaskId)
+        );
+
+        if (!atividade) return;
+
+        modalTitle.textContent = `Enviar: ${atividade.titulo}`;
+        modalDesc.textContent = "Digite sua resolução no campo abaixo.";
+
+        formEnvio.reset();
+        modal.classList.remove("hidden");
     });
 
-    document.addEventListener("click", (event) => {
-        if (event.target.classList.contains("btn-enviar")) {
-            event.preventDefault();
-            const button = event.target;
-            const card = button.closest(".card-atividade");
-            const taskId = card.getAttribute("data-id");
-            const taskTitle = card.querySelector("h3").textContent;
-
-            if (button.classList.contains("disabled")) {
-                const submission = taskSubmissions[taskId];
-                const savedFileName = (submission && typeof submission === 'object') ? submission.name : "Arquivo enviado anteriormente.";
-                const notaValue = teacherGrades[taskId] ? `\nNota atribuída: ${teacherGrades[taskId]}` : "\nAguardando nota do professor.";
-                alert(`Tarefa já enviada!\nArquivo entregue: ${savedFileName}${notaValue}`);
-                return;
-            }
-
-            activeTaskId = taskId;
-            modalTitle.textContent = `Enviar: ${taskTitle}`;
-            modalDesc.textContent = "Selecione o arquivo contendo a resolução dos seus exercícios.";
-            
-            formEnvio.reset();
-            fileInfo.classList.add("hidden");
-            modal.classList.remove("hidden");
-        }
-    });
-
-    closeModal.addEventListener("click", () => modal.classList.add("hidden"));
-    window.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
-
-    dropZone.addEventListener("click", () => fileInput.click());
-
-    fileInput.addEventListener("change", () => {
-        if (fileInput.files.length > 0) {
-            fileNameSpan.textContent = fileInput.files[0].name; 
-            fileInfo.classList.remove("hidden");
-        }
-    });
-
-    formEnvio.addEventListener("submit", (event) => {
-        event.preventDefault();
-        if (fileInput.files.length === 0) return;
-
-        const uploadedFileName = fileInput.files[0].name; 
-        
-        taskSubmissions[activeTaskId] = uploadedFileName;
-        localStorage.setItem("taskSubmissions", JSON.stringify(taskSubmissions));
-
-        const targetCard = document.querySelector(`.card-atividade[data-id="${activeTaskId}"]`);
-        setCardToCompleted(targetCard);
-
+    closeModal.addEventListener("click", () => {
         modal.classList.add("hidden");
     });
 
-    function setCardToCompleted(card) {
-        const formData = new FormData();
-        formData.append("arquivo", fileInput.files[0]);
-
-        fetch(`http://localhost:3000/api/upload/${activeTaskId}`, {
-            method: "POST",
-            body: formData
-        })
-        .then(res => {
-            if (!res.ok) throw new Error("Falha no upload do arquivo.");
-            return res.json();
-        })
-        .then(data => {
-            alert("Sucesso! Arquivo real salvo na pasta do servidor.");
+    window.addEventListener("click", evento => {
+        if (evento.target === modal) {
             modal.classList.add("hidden");
-            loadDashboardData();
-        })
-        .catch(err => {
-            console.error(err);
-            alert("Erro ao realizar upload do arquivo físico.");
-        });
+        }
     });
 
-    function setCardToCompleted(card, nota) {
-        card.className = "card-atividade concluida";
-        const badge = card.querySelector(".badge");
-        badge.className = "badge sucesso";
-        badge.textContent = "Concluída";
-        
-        const metaInfo = card.querySelector(".meta-info span");
-        metaInfo.innerHTML = nota ? `📅 Entregue | ⭐️ <strong>Nota: ${nota}</strong>` : "📅 Entregue";
-        
-        const button = card.querySelector(".btn-enviar");
-        button.className = "btn-enviar disabled";
-        button.textContent = "Visualizar Envio";
-    }
-});
+    formEnvio.addEventListener("submit", async evento => {
+        evento.preventDefault();
 
-    setInterval(loadDashboardData, 3000);
+        const resposta = respostaInput.value.trim();
 
-    loadDashboardData();
+        if (!resposta) {
+            alert("Digite sua resposta antes de enviar.");
+            return;
+        }
+
+        const alunoSalvo = sessionStorage.getItem("aluno");
+
+        if (!alunoSalvo) {
+            alert("Aluno não identificado. Faça login novamente.");
+            return;
+        }
+
+        const aluno = JSON.parse(alunoSalvo);
+
+        try {
+            const resultado = await fetch(
+                `http://localhost:3000/api/entrega/${activeTaskId}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        id_aluno: aluno.id_aluno,
+                        resposta: resposta
+                    })
+                }
+            );
+
+            const dados = await resultado.json();
+
+            if (resultado.ok) {
+                alert(dados.mensagem);
+                modal.classList.add("hidden");
+                formEnvio.reset();
+            } else {
+                alert(dados.mensagem);
+            }
+
+        } catch (erro) {
+            console.error("Erro ao enviar resposta:", erro);
+            alert("Não foi possível conectar ao servidor.");
+        }
+    });
+
+    carregarAtividades();
 });

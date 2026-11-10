@@ -9,22 +9,33 @@ document.addEventListener("DOMContentLoaded", () => {
         { id: "3", title: "Conceito de Soluto e Solvente", materia: "Soluções" }
     ];
 
-    let allActivities = [...baseActivities, ...customActivities];
+    allActivities = [...customActivities];
 
     const formCriar = document.getElementById("form-criar-atividade");
     const listaEntregas = document.getElementById("lista-entregas");
 
     function loadDashboardData() {
-        fetch("http://localhost:3000/api/dashboard")
-            .then(res => res.json())
-            .then(data => {
-                taskSubmissions = data.submissions || {};
-                teacherGrades = data.teacherGrades || {};
-                customActivities = data.customActivities || [];
-                renderSubmissionsMonitor();
-            })
-            .catch(err => console.error("Erro ao sincronizar dados com o backend:", err));
-    }
+    fetch("http://localhost:3000/api/activities")
+        .then(res => {
+            if (!res.ok) {
+                throw new Error("Erro ao buscar atividades.");
+            }
+
+            return res.json();
+        })
+        .then(data => {
+            customActivities = data.map(atividade => ({
+                id: atividade.id,
+                title: atividade.titulo,
+                materia: atividade.materia,
+                descricao: atividade.descricao,
+                data_entrega: atividade.data_entrega
+            }));
+
+            renderSubmissionsMonitor();
+        })
+        .catch(err => console.error("Erro ao carregar atividades:", err));
+}
 
     function renderSubmissionsMonitor() {
         listaEntregas.innerHTML = "";
