@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +9,26 @@
 </head>
 <body>
     <main class="container">
-    <h1>LOGIN</h1>
-    <div class="login">
-        <form>
-        <input type="email" id="email" placeholder="Digite seu e-mail" required>
-        <input type="password" id="senha" placeholder="Digite sua senha" required>
-        <a class="cadastro" href="cadastro.html">Esqueci minha senha</a>
-        <div class="botoes">
-        <button type="reset">Limpar</button>
-        <button type="submit" id="btnEnviar"><a class="enviar" href="index.html">Entrar</a></button>
-        
-    </div>
+        <h1>LOGIN</h1>
 
-    </form>
+        <div class="login">
+            <form id="login-professor">
+
+                <input type="email" id="email"
+                    placeholder="Digite seu e-mail" required>
+
+                <input type="password" id="senha"
+                    placeholder="Digite sua senha" required>
+
+                <div class="botoes">
+                    <button type="reset">Limpar</button>
+                    <button type="submit" id="btnEnviar">Entrar</button>
+                </div>
+
+            </form>
+        </div>
     </main>
+
+    <script src="loginprof.js"></script>
 </body>
 </html>

@@ -9,22 +9,33 @@ document.addEventListener("DOMContentLoaded", () => {
         { id: "3", title: "Conceito de Soluto e Solvente", materia: "Soluções" }
     ];
 
-    let allActivities = [...baseActivities, ...customActivities];
+    allActivities = [...customActivities];
 
     const formCriar = document.getElementById("form-criar-atividade");
     const listaEntregas = document.getElementById("lista-entregas");
 
     function loadDashboardData() {
-        fetch("http://localhost:3000/api/dashboard")
-            .then(res => res.json())
-            .then(data => {
-                taskSubmissions = data.submissions || {};
-                teacherGrades = data.teacherGrades || {};
-                customActivities = data.customActivities || [];
-                renderSubmissionsMonitor();
-            })
-            .catch(err => console.error("Erro ao sincronizar dados com o backend:", err));
-    }
+    fetch("http://localhost:3000/api/activities")
+        .then(res => {
+            if (!res.ok) {
+                throw new Error("Erro ao buscar atividades.");
+            }
+
+            return res.json();
+        })
+        .then(data => {
+            customActivities = data.map(atividade => ({
+                id: atividade.id,
+                title: atividade.titulo,
+                materia: atividade.materia,
+                descricao: atividade.descricao,
+                data_entrega: atividade.data_entrega
+            }));
+
+            renderSubmissionsMonitor();
+        })
+        .catch(err => console.error("Erro ao carregar atividades:", err));
+}
 
     function renderSubmissionsMonitor() {
         listaEntregas.innerHTML = "";
@@ -97,24 +108,52 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    formCriar.addEventListener("submit", (e) => {
+    formCriar.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const materia = document.getElementById("nova-materia").value;
-        const title = document.getElementById("novo-titulo").value;
+        const titulo = document.getElementById("novo-titulo").value;
+        const descricao = document.getElementById("nova-descricao").value;
+        const data_entrega = document.getElementById("novo-prazo").value;
 
-        fetch("http://localhost:3000/api/activity", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ title, materia })
-        })
-        .then(res => res.json())
-        .then(data => {
-            alert(`Sucesso! A atividade "${title}" foi salva e publicada.`);
-            formCriar.reset();
-            loadDashboardData();
-        })
-        .catch(err => console.error("Erro ao criar nova atividade:", err));
+        const professorSalvo = sessionStorage.getItem("professor");
+
+        if (!professorSalvo) {
+            alert("Professor não identificado. Faça login novamente.");
+            return;
+        }
+
+        const professor = JSON.parse(professorSalvo);
+
+        try {
+            const resposta = await fetch("http://localhost:3000/api/activity", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    titulo: titulo,
+                    descricao: descricao,
+                    data_entrega: data_entrega,
+                    materia: materia,
+                    id_professor: professor.id
+                })
+            });
+
+            const dados = await resposta.json();
+
+            if (resposta.ok) {
+                alert(dados.mensagem);
+                formCriar.reset();
+                loadDashboardData();
+            } else {
+                alert(dados.mensagem);
+            }
+
+        } catch (erro) {
+            console.error("Erro ao criar atividade:", erro);
+            alert("Não foi possível conectar ao servidor.");
+        }
     });
 
     setInterval(loadDashboardData, 3000);

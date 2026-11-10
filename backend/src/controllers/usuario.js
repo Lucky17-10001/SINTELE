@@ -1,24 +1,33 @@
-const fs = require("fs");
-const path = require("path");
+const db = require("../database");
+const crypto = require("crypto");
 
-const caminhoDados = path.join(__dirname, "../../dados.json");
+function gerarSenha(senha) {
+    const salt = crypto.randomBytes(16).toString("hex");
+    const hash = crypto.scryptSync(senha, salt, 64).toString("hex");
 
-function carregarUsuarios() {
-    try {
-        const dados = fs.readFileSync(caminhoDados, "utf8");
-        return JSON.parse(dados);
-    } catch (erro) {
-        console.error("Erro ao carregar usuários:", erro);
-        return [];
-    }
+    return salt + ":" + hash;
 }
 
-function salvarUsuarios(usuarios) {
-    fs.writeFileSync(
-        caminhoDados,
-        JSON.stringify(usuarios, null, 4),
-        "utf8"
-    );
+function verificarSenha(senha, senhaArmazenada) {
+    const partes = senhaArmazenada.split(":");
+
+    if (partes.length !== 2) {
+        return false;
+    }
+
+    const [salt, hashArmazenado] = partes;
+
+    if (
+        !/^[a-f0-9]{32}$/i.test(salt) ||
+        !/^[a-f0-9]{128}$/i.test(hashArmazenado)
+    ) {
+        return false;
+    }
+
+    const hashDigitado = crypto.scryptSync(senha, salt, 64);
+    const hashOriginal = Buffer.from(hashArmazenado, "hex");
+
+    return crypto.timingSafeEqual(hashDigitado, hashOriginal);
 }
 
 const rotaInicial = (req, res) => {
@@ -28,61 +37,161 @@ const rotaInicial = (req, res) => {
 };
 
 const listarUsuarios = (req, res) => {
-    const usuarios = carregarUsuarios();
+    const sql = "SELECT id_aluno, nome, email, sala FROM aluno";
 
-    // Não enviar senhas ao navegador.
-    const usuariosPublicos = usuarios.map(({ senha, ...usuario }) => usuario);
+    db.query(sql, (erro, resultados) => {
+        if (erro) {
+            console.error("Erro ao consultar alunos:", erro);
+            return res.status(500).send("Erro ao consultar o BD");
+        }
 
-    res.json(usuariosPublicos);
+        res.send(resultados);
+    });
 };
 
 const novoUsuario = (req, res) => {
     const { nome, email, senha, sala } = req.body;
 
-    if (!nome || !email || !senha) {
+    if (!nome || !email || !senha || !sala) {
+        return res.status(400).send("Preencha todos os campos");
+    }
+
+    const senhaHash = gerarSenha(senha);
+
+    const sql = `
+        INSERT INTO aluno (nome, email, senha, sala)
+        VALUES (?, ?, ?, ?)
+    `;
+
+    const valores = [nome, email, senhaHash, sala];
+
+    db.query(sql, valores, (erro, resultado) => {
+        if (erro) {
+            console.error("Erro ao cadastrar aluno:", erro);
+
+            if (erro.code === "ER_DUP_ENTRY") {
+                return res.status(409).send("Este e-mail já está cadastrado");
+            }
+
+            return res.status(500).send("Erro ao cadastrar aluno");
+        }
+
+        res.status(201).send("Aluno cadastrado com sucesso!");
+    });
+};
+
+const loginAluno = (req, res) => {
+    const { nome, email, senha, sala } = req.body;
+
+    if (!nome || !email || !senha || !sala) {
         return res.status(400).json({
-            erro: "Preencha todos os campos obrigatórios."
+            mensagem: "Preencha todos os campos."
         });
     }
 
-    const usuarios = carregarUsuarios();
+    const sql = `
+        SELECT id_aluno, nome, email, senha, sala
+        FROM aluno
+        WHERE email = ?
+    `;
 
-    const emailExiste = usuarios.some(
-        usuario => usuario.email === email
-    );
+    db.query(sql, [email], (erro, resultados) => {
+        if (erro) {
+            console.error("Erro ao consultar aluno:", erro);
 
-    if (emailExiste) {
-        return res.status(409).json({
-            erro: "Este e-mail já está cadastrado."
+            return res.status(500).json({
+                mensagem: "Erro ao consultar o BD."
+            });
+        }
+
+        if (resultados.length === 0) {
+            return res.status(401).json({
+                mensagem: "Dados de login incorretos."
+            });
+        }
+
+        const aluno = resultados[0];
+
+        const senhaCorreta = verificarSenha(senha, aluno.senha);
+
+        if (
+            aluno.nome !== nome ||
+            aluno.sala !== sala ||
+            !senhaCorreta
+        ) {
+            return res.status(401).json({
+                mensagem: "Dados de login incorretos."
+            });
+        }
+
+        res.json({
+            mensagem: "Login realizado com sucesso!",
+            aluno: {
+                id_aluno: aluno.id_aluno,
+                nome: aluno.nome,
+                email: aluno.email,
+                sala: aluno.sala
+            }
+        });
+    });
+};
+
+const loginProfessor = (req, res) => {
+    const { email, senha } = req.body;
+
+    if (!email || !senha) {
+        return res.status(400).json({
+            mensagem: "Preencha todos os campos."
         });
     }
 
-    const novoUsuario = {
-        nome,
-        email,
-        senha,
-        ...(sala && { sala })
-    };
+    const sql = `
+        SELECT id, nome, email, senha, especialidade
+        FROM professor
+        WHERE email = ?
+    `;
 
-    usuarios.push(novoUsuario);
+    db.query(sql, [email], (erro, resultados) => {
+        if (erro) {
+            console.error("Erro ao consultar professor:", erro);
 
-    try {
-        salvarUsuarios(usuarios);
+            return res.status(500).json({
+                mensagem: "Erro ao consultar o BD."
+            });
+        }
 
-        res.status(201).json({
-            mensagem: "Usuário cadastrado com sucesso!"
+        if (resultados.length === 0) {
+            return res.status(401).json({
+                mensagem: "Dados de login incorretos."
+            });
+        }
+
+        const professor = resultados[0];
+
+        const senhaCorreta = verificarSenha(senha, professor.senha);
+
+        if (!senhaCorreta) {
+            return res.status(401).json({
+                mensagem: "Dados de login incorretos."
+            });
+        }
+
+        res.json({
+            mensagem: "Login realizado com sucesso!",
+            professor: {
+                id: professor.id,
+                nome: professor.nome,
+                email: professor.email,
+                especialidade: professor.especialidade
+            }
         });
-    } catch (erro) {
-        console.error("Erro ao salvar usuário:", erro);
-
-        res.status(500).json({
-            erro: "Não foi possível cadastrar o usuário."
-        });
-    }
+    });
 };
 
 module.exports = {
     rotaInicial,
     novoUsuario,
-    listarUsuarios
+    listarUsuarios,
+    loginAluno,
+    loginProfessor
 };
